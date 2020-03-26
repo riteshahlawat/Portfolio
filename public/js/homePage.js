@@ -1,3 +1,4 @@
+console.log("Hawoo >.<");
 var introTypeWriter = document.getElementById("intro-text-typewriter");
 // Sections
 var home = document.getElementById("intro");

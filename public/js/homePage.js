@@ -8,6 +8,9 @@ var homeTab = document.getElementById("home-tab");
 var aboutTab = document.getElementById("about-tab");
 var portfolioTab = document.getElementById("portfolio-tab");
 
+// Scroll Magic
+var smController = new ScrollMagic.Controller();
+
 var typewriter = new Typewriter(introTypeWriter, {
     strings: ["Student", "Full-Stack Developer", "Mobile Developer"],
     loop: true,

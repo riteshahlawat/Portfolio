@@ -12,6 +12,16 @@ var portfolioTab = document.getElementById("portfolio-tab");
 // Scroll Magic
 var smController = new ScrollMagic.Controller();
 
+new ScrollMagic.Scene({
+    triggerElement: "#qualities", // Element
+    triggerHook: 0.85, // show when scrolled 10% into view
+    duration: "185%", // hide 10% before exiting view 
+    offset: 60 // move trigger to center of element
+})
+.setClassToggle("#qualities", "visible")
+.addTo(smController);
+
+// TypeWriter
 var typewriter = new Typewriter(introTypeWriter, {
     strings: ["Student", "Full-Stack Developer", "Mobile Developer"],
     loop: true,

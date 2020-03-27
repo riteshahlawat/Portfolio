@@ -15,6 +15,7 @@ app.use(
 
 app.get("*", function(request, response){
     response.redirect("https://" + request.headers.host + request.url);
+    console.log("hawo");
   });
 
 const PORT = 8787;

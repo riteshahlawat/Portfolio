@@ -11,6 +11,13 @@ app.use(
     })
 );
 
+app.use((req, res) => {
+    if (!req.secure) {
+        response.redirect("https://" + request.headers.host + request.url);
+        console.log("Redirecting")
+    }
+})
+
 const PORT = 8787;
 
 app.listen(process.env.PORT || PORT, (err) => {

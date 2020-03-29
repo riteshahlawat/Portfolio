@@ -1,4 +1,3 @@
-console.log("Hawoo >.<");
 var introTypeWriter = document.getElementById("intro-text-typewriter");
 // Sections
 var header = document.querySelector("header");
@@ -17,17 +16,16 @@ var smController = new ScrollMagic.Controller();
 
 // Intro header transition
 var introTexts = document.querySelectorAll(".section-intro-text");
-
 for (let i = 0; i < introTexts.length; i++) {
   let introText = introTexts[i];
   new ScrollMagic.Scene({
     triggerElement: introText,
     triggerHook: 1,
-    duration: "180%",
+    duration: 0,
     offset: 250
   })
     .setClassToggle(introText, "visible")
-    .reverse(true)
+    .reverse(false)
     .addTo(smController);
 }
 // Intro header text transition
@@ -37,11 +35,11 @@ for (let i = 0; i < introDividers.length; i++) {
   new ScrollMagic.Scene({
     triggerElement: introDiv,
     triggerHook: 1,
-    duration: "180%",
+    duration: 0,
     offset: 185
   })
     .setClassToggle(introDiv, "visible")
-    .reverse(true)
+    .reverse(false)
     .addTo(smController);
 }
 
@@ -52,11 +50,11 @@ for (let i = 0; i < qualityCards.length; i++) {
   new ScrollMagic.Scene({
     triggerElement: "#qualities", // Element
     triggerHook: 0.85, // show when scrolled 10% into view
-    duration: "180%", // hide 10% before exiting view
+    duration: 0, // hide 10% before exiting view
     offset: 180 // move trigger to center of element
   })
     .setClassToggle(card, "visible")
-    .reverse(true)
+    .reverse(false)
     .addTo(smController);
 }
 // Quality card text transition
@@ -66,18 +64,18 @@ for (let i = 0; i < qualityCardTexts.length; i++) {
   new ScrollMagic.Scene({
     triggerElement: "#qualities", // Element
     triggerHook: 0.85, // show when scrolled 10% into view
-    duration: "180%", // hide 10% before exiting view
+    duration: 0, // hide 10% before exiting view
     offset: 280 // move trigger to center of element
   })
     .setClassToggle(text, "visible")
-    .reverse(true)
+    .reverse(false)
     .addTo(smController);
 }
 
 new ScrollMagic.Scene({
   triggerElement: "#who-am-i",
   triggerHook: 0.85,
-  duration: "",
+  duration: 0,
   offset: 170
 })
     .setClassToggle("#who-am-i", "visible")

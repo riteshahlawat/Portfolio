@@ -35,7 +35,6 @@ app.get("/storeIp", (req, res) => {
   let yourIp = process.env.IP;
   let parsedData;
 
-  let organization = "";
   let address = "";
   let city = ipInfo.city;
   let state = ipInfo.region;
@@ -45,58 +44,39 @@ app.get("/storeIp", (req, res) => {
 
   let message;
 
-  // WhoIs lookup for org and org address
-  whois.lookup(tempIp, (err, data) => {
-    if (err) console.log(err);
-    let file;
-    parsedData = whoisParser.parseWhoIsData(data);
-    // Only parse if not your ip
-    if (tempIp != yourIp) {
-      // Get varaiables
-      for (let i = 0; i < parsedData.length; i++) {
-        if (parsedData[i].attribute == "Organization") {
-          organization = parsedData[i].value;
-        } else if (parsedData[i].attribute == "Address") {
-          // Multiple lines are stored multiple times
-          if (address == "") {
-            // First line
-            address = parsedData[i].value;
-          } else {
-            // Second+ line
-            address += ", " + parsedData[i].value;
-          }
-        }
-      }
-      message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}`;
-      // General channel
-      bot.channels
-        .fetch("694702074130202697")
-        .then(channel => {
-          channel.send(message);
-          res.send(ipInfo);
-        })
-        .catch(error => {
-          console.log(error);
+  let file;
+  // Only parse if not your ip
+  if (tempIp != yourIp) {
+    // Get varaiables
+
+    message = `Someone went on your website!! \n \n IP: ${tempIp} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}`;
+    // General channel
+    bot.channels
+      .fetch("694702074130202697")
+      .then(channel => {
+        channel.send(message);
+        res.send(ipInfo);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  } else {
+    message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`;
+    file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
+    // General channel
+    bot.channels
+      .fetch("694702074130202697")
+      .then(channel => {
+        channel.send(message, {
+          // Options
+          files: [file]
         });
-    } else {
-      message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`;
-      file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
-      // General channel
-      bot.channels
-        .fetch("694702074130202697")
-        .then(channel => {
-          channel.send(message, {
-            // Options
-            files: [file]
-          });
-          res.send(ipInfo);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-    // Make message to send to channel
-  });
+        res.send(ipInfo);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 });
 
 const PORT = 443;

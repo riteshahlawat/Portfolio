@@ -72,10 +72,7 @@ app.get("/storeIp", (req, res) => {
       bot.channels
         .fetch("694702074130202697")
         .then(channel => {
-          channel.send(message, {
-            // Options
-            files: [file]
-          });
+          channel.send(message);
           res.send(ipInfo);
         })
         .catch(error => {
@@ -88,7 +85,10 @@ app.get("/storeIp", (req, res) => {
       bot.channels
         .fetch("694702074130202697")
         .then(channel => {
-          channel.send(message);
+          channel.send(message, {
+            // Options
+            files: [file]
+          });
           res.send(ipInfo);
         })
         .catch(error => {

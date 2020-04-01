@@ -13,7 +13,6 @@ var portfolioTab = document.getElementById("portfolio-tab");
 // Scroll Magic
 var smController = new ScrollMagic.Controller();
 
-
 // Intro header transition
 var introTexts = document.querySelectorAll(".section-intro-text");
 for (let i = 0; i < introTexts.length; i++) {
@@ -71,16 +70,44 @@ for (let i = 0; i < qualityCardTexts.length; i++) {
     .reverse(false)
     .addTo(smController);
 }
-
+// Who Am I (Profile photo and Description)
 new ScrollMagic.Scene({
   triggerElement: "#who-am-i",
   triggerHook: 0.85,
   duration: 0,
   offset: 170
 })
-    .setClassToggle("#who-am-i", "visible")
+  .setClassToggle("#who-am-i", "visible")
+  .reverse(false)
+  .addTo(smController);
+
+// Skills
+
+// Bring entire container into view
+new ScrollMagic.Scene({
+  triggerElement: "#skills-container",
+  triggerHook: 0.85,
+  duration: 0,
+  offset: 170
+})
+  .setClassToggle("#skills-container", "visible")
+  .reverse(false)
+  .addTo(smController);
+
+// Gets individual rows filled
+var rowFilled = document.querySelectorAll(".skill-row-filled");
+for (let i = 0; i < rowFilled.length; i++) {
+  let row = rowFilled[i];
+  new ScrollMagic.Scene({
+    triggerElement: "#skills-container",
+    triggerHook: 0.85,
+    duration: 0,
+    offset: 170
+  })
+    .setClassToggle(row, "visible")
     .reverse(false)
     .addTo(smController);
+}
 
 // TypeWriter
 var typewriter = new Typewriter(introTypeWriter, {

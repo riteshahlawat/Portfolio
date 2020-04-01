@@ -49,7 +49,7 @@ app.get("/storeIp", (req, res) => {
   if (tempIp != yourIp) {
     // Get varaiables
 
-    message = `Someone went on your website!! \n \n IP: ${tempIp} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}`;
+    message = `\nSomeone went on your website!! \n \n IP: ${tempIp} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}\n`;
     // General channel
     bot.channels
       .fetch("694702074130202697")
@@ -61,7 +61,7 @@ app.get("/storeIp", (req, res) => {
         console.log(error);
       });
   } else {
-    message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`;
+    message = `\nDamn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby\n`;
     file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     // General channel
     bot.channels

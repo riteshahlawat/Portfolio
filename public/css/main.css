@@ -48,7 +48,6 @@ header {
   background-color: transparent;
   transition: all 0.15s;
 }
-
 #header-logo {
   font-size: 45px;
   font-family: "Roboto", sans-serif;
@@ -371,7 +370,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 50px;
+  margin-top: 75px;
   flex-wrap: wrap;
   padding-bottom: 30px;
 }
@@ -390,6 +389,7 @@ header {
   -ms-transition: all 0.65s ease-in-out;
   -o-transition: all 0.65s ease-in-out;
   transition: all 0.65s ease-in-out;
+  margin-bottom: 40px;
   /* transition: all 0.3s ease-in-out; */
 }
 
@@ -452,6 +452,90 @@ header {
   }
   #who-am-i {
     width: 90%;
+  }
+}
+
+/* Skills */
+
+#skills {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+#skills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.skills-sub-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 10px;
+  width: 600px;
+}
+.skill-title {
+
+  text-align: center;
+  width: 25%;
+  height: 35px;
+  background-color: #174a69;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--cWhite);
+}
+.skill-row {
+  width: 75%;
+  height: 35px;
+  background-color: #252525;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill-row-filled {
+  width: 80%;
+  height: 100%;
+  background-color: var(--cDarkBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-row-text {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  background-color: transparent;
+  color: var(--cWhite);
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.skill-row-text-shift {
+  margin-right: 7px;
+}
+
+/* Responsive Skills */
+@media (hover: none), (max-width: 835px) {
+  .skills-sub-container {
+    width: 90vw;
+  }
+  #skills {
+    justify-content: flex-start;
+    margin-left: 5vw;
+  }
+  .skill-title {
+    font-size: 14px;
   }
 }
 /* PORTFOLIO */

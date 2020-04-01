@@ -31,53 +31,56 @@ app.use(
 app.get("/storeIp", (req, res) => {
   const ipInfo = req.ipInfo;
   console.log(ipInfo.ip);
-  let tempIp = "72.136.0.216";
+  let tempIp = ipInfo.ip;
   let yourIp = process.env.IP;
   let parsedData;
 
   let organization = "";
   let address = "";
-  let city = "";
-  let state = "";
-  let country = "";
+  let city = ipInfo.city;
+  let state = ipInfo.region;
+  let country = ipInfo.country;
 
   let message;
-  // WhoIs lookup
+
+  // WhoIs lookup for org and org address
   whois.lookup(tempIp, (err, data) => {
     if (err) console.log(err);
-
+    let file;
     parsedData = whoisParser.parseWhoIsData(data);
-    // Get varaiables
-    for (let i = 0; i < parsedData.length; i++) {
-      if (parsedData[i].attribute == "Organization") {
-        organization = parsedData[i].value;
-      } else if (parsedData[i].attribute == "Address") {
-        // Multiple lines are stored multiple times
-        if (address == "") {
-          // First line
-          address = parsedData[i].value;
-        } else {
-          // Second+ line
-          address += ", " + parsedData[i].value;
+    // Only parse if not your ip
+    if (tempIp != yourIp) {
+      // Get varaiables
+      for (let i = 0; i < parsedData.length; i++) {
+        if (parsedData[i].attribute == "Organization") {
+          organization = parsedData[i].value;
+        } else if (parsedData[i].attribute == "Address") {
+          // Multiple lines are stored multiple times
+          if (address == "") {
+            // First line
+            address = parsedData[i].value;
+          } else {
+            // Second+ line
+            address += ", " + parsedData[i].value;
+          }
         }
-      } else if (parsedData[i].attribute == "City") {
-        city = parsedData[i].value;
-      } else if (parsedData[i].attribute == "StateProv") {
-        state = parsedData[i].value;
-      } else if (parsedData[i].attribute == "Country") {
-        country = parsedData[i].value;
       }
+      message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country}`;
+      file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
+    }
+    else {
+      message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`
+      file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     }
     // Make message to send to channel
-    message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country}`;
-
+  
     // General channel
     bot.channels
       .fetch("694702074130202697")
       .then(channel => {
         channel.send(message, {
           // Options
-          files: ["https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg"]
+          files: [file]
         });
         res.send(ipInfo);
       })
@@ -85,8 +88,6 @@ app.get("/storeIp", (req, res) => {
         console.log(error);
       });
   });
-
-  
 });
 
 const PORT = 443;

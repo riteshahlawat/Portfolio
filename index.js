@@ -40,6 +40,8 @@ app.get("/storeIp", (req, res) => {
   let city = ipInfo.city;
   let state = ipInfo.region;
   let country = ipInfo.country;
+  let lat = ipInfo.ll[0];
+  let long = ipInfo.ll[1];
 
   let message;
 
@@ -65,7 +67,7 @@ app.get("/storeIp", (req, res) => {
           }
         }
       }
-      message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country}`;
+      message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}`;
       file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     }
     else {

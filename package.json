@@ -16,6 +16,8 @@
     "express": "^4.17.1",
     "express-ip": "^1.0.4",
     "heroku-ssl-redirect": "0.0.4",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "parse-whois": "^1.0.0",
+    "whois": "^2.12.1"
   }
 }

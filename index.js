@@ -68,27 +68,34 @@ app.get("/storeIp", (req, res) => {
         }
       }
       message = `Someone went on your website!! \n \n IP: ${tempIp} \n Organization: ${organization} \n Address: ${address} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}`;
+      // General channel
+      bot.channels
+        .fetch("694702074130202697")
+        .then(channel => {
+          channel.send(message, {
+            // Options
+            files: [file]
+          });
+          res.send(ipInfo);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`;
       file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
-    }
-    else {
-      message = `Damn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby`
-      file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
+      // General channel
+      bot.channels
+        .fetch("694702074130202697")
+        .then(channel => {
+          channel.send(message);
+          res.send(ipInfo);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
     // Make message to send to channel
-  
-    // General channel
-    bot.channels
-      .fetch("694702074130202697")
-      .then(channel => {
-        channel.send(message, {
-          // Options
-          files: [file]
-        });
-        res.send(ipInfo);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   });
 });
 

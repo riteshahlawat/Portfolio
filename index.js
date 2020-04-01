@@ -4,9 +4,7 @@ const express = require("express");
 const expressIp = require("express-ip");
 const path = require("path");
 const sslRedirect = require("heroku-ssl-redirect");
-// IP lookup
-const whois = require("whois");
-const whoisParser = require("parse-whois");
+
 // DISCORD
 const Discord = require("discord.js");
 const bot = new Discord.Client();

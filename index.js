@@ -7,7 +7,9 @@ const sslRedirect = require("heroku-ssl-redirect");
 
 // DISCORD
 const Discord = require("discord.js");
+
 const bot = new Discord.Client();
+var logsChannel;
 
 const DTOKEN = process.env.TOKEN;
 
@@ -22,7 +24,7 @@ app.use(expressIp().getIpInfoMiddleware);
 
 app.use(
   express.static(path.join(__dirname, "public"), {
-    extensions: ["html"]
+    extensions: ["html"],
   })
 );
 
@@ -49,29 +51,22 @@ app.get("/storeIp", (req, res) => {
 
     message = `\nSomeone went on your website!! \n \n IP: ${tempIp} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}\n`;
     // General channel
-    bot.channels
-      .fetch("694702074130202697")
-      .then(channel => {
-        channel.send(message);
-        res.send(ipInfo);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    logsChannel.send(message);
+    res.send(ipInfo);
   } else {
     message = `\nDamn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby\n`;
     file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     // General channel
     bot.channels
       .fetch("694702074130202697")
-      .then(channel => {
+      .then((channel) => {
         channel.send(message, {
           // Options
-          files: [file]
+          files: [file],
         });
         res.send(ipInfo);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -79,13 +74,17 @@ app.get("/storeIp", (req, res) => {
 
 const PORT = 443;
 
-app.listen(process.env.PORT || PORT, err => {
+app.listen(process.env.PORT || PORT, (err) => {
   if (err) console.log;
   console.log(`Server started on port: ${PORT}`);
 });
 
 bot.on("ready", () => {
+  bot.channels.fetch("694702074130202697").then((channel) => {
+    logsChannel = channel;
+  });
+
   console.log(`Logged in as ${bot.user.username}`);
 });
 // When a message is sent
-bot.on("message", msg => {});
+bot.on("message", (msg) => {});

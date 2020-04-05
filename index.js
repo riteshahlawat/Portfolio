@@ -50,25 +50,36 @@ app.get("/storeIp", (req, res) => {
     // Get varaiables
 
     message = `\nSomeone went on your website!! \n \n IP: ${tempIp} \n City: ${city} \n State: ${state} \n Country: ${country} \n Lat: ${lat} \n Long: ${long}\n`;
+    const messageEmbed = new Discord.MessageEmbed()
+      .setColor("#fc0390")
+      .setTitle("Someone Went On Your Website!")
+      .setAuthor("Ritesh Ahlawat", "https://ritesh.social/files/portfolio/me.jpg", "https://ritesh.social")
+      .setDescription("Damb bruh check this dumbass out yo")
+      .setThumbnail("https://iconsplace.com/wp-content/uploads/_icons/000000/256/png/letter-r-icon-256.png")
+      .addFields(
+        {name: "IP", value: `${tempIp}`},
+        {name: "City", value: `${city}`},
+        {name: "State", value: `${State}`},
+        {name: "Country", value: `${country}`},
+        {name: "Latitude", value: `${lat}`},
+        {name: "Longitude", value: `${long}`},
+        {name: '\u200B', value: '\u200B' }
+      )
+      .setTimestamp()
+      .setFooter("He do be getting yeeted doe");
+    
     // General channel
-    logsChannel.send(message);
+    logsChannel.send(messageEmbed);
     res.send(ipInfo);
   } else {
     message = `\nDamn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby\n`;
     file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     // General channel
-    bot.channels
-      .fetch("694702074130202697")
-      .then((channel) => {
-        channel.send(message, {
-          // Options
-          files: [file],
-        });
-        res.send(ipInfo);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    logsChannel.send(message, {
+      // Options
+      files: [file],
+    });
+    res.send(ipInfo);
   }
 });
 

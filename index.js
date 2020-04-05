@@ -59,7 +59,7 @@ app.get("/storeIp", (req, res) => {
       .addFields(
         {name: "IP", value: `${tempIp}`},
         {name: "City", value: `${city}`},
-        {name: "State", value: `${State}`}, 
+        {name: "State", value: `${state}`}, 
         {name: "Country", value: `${country}`},
         {name: "Latitude", value: `${lat}`},
         {name: "Longitude", value: `${long}`},

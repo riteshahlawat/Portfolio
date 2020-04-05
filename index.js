@@ -33,23 +33,20 @@ app.get("/storeIp", (req, res) => {
   console.log(ipInfo.ip);
   let tempIp = ipInfo.ip;
   let yourIp = process.env.IP;
-  let parsedData;
 
-  let address = "";
   let city = ipInfo.city;
   let state = ipInfo.region;
   let country = ipInfo.country;
   let lat = ipInfo.ll[0];
   let long = ipInfo.ll[1];
 
-  let message;
-
+  let messageEmbed;
   let file;
   // Only parse if not your ip
   if (tempIp != yourIp) {
     // Get varaiables
 
-    const messageEmbed = new Discord.MessageEmbed()
+    messageEmbed = new Discord.MessageEmbed()
       .setColor("#fc0390")
       .setTitle("Someone Went On Your Website!")
       .setAuthor(
@@ -62,7 +59,8 @@ app.get("/storeIp", (req, res) => {
         "https://iconsplace.com/wp-content/uploads/_icons/000000/256/png/letter-r-icon-256.png"
       )
       .addFields(
-        { name: "IP", value: `${tempIp}`, inline: true },
+        { name: "\u200B", value: "\u200B" },
+        { name: "IP", value: `${tempIp}`},
         { name: "City", value: `${city}`, inline: true },
         { name: "State", value: `${state}`, inline: true },
         { name: "Country", value: `${country}`, inline: true },
@@ -77,35 +75,25 @@ app.get("/storeIp", (req, res) => {
     logsChannel.send(messageEmbed);
     res.send(ipInfo);
   } else {
-    message = `\nDamn bruh you just visited your own website dawg.\npwes enjoy this stupid fucking baby\n`;
     file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     // General channel
-    const messageEmbed = new Discord.MessageEmbed()
+    messageEmbeded = new Discord.MessageEmbed()
       .setColor("#fc0390")
-      .setTitle("Someone Went On Your Website!")
+      .setTitle("You visited your own website")
       .setAuthor(
         "Ritesh Ahlawat",
         "https://ritesh.social/files/portfolio/me.jpg",
         "https://ritesh.social"
       )
-      .setDescription("Damb bruh check this dumbass out yo")
+      .setDescription("damb.")
       .setThumbnail(
         "https://iconsplace.com/wp-content/uploads/_icons/000000/256/png/letter-r-icon-256.png"
       )
-      .addFields(
-        { name: "IP", value: `${tempIp}`, inline: true },
-        { name: "City", value: `${city}`, inline: true },
-        { name: "State", value: `${state}`, inline: true },
-        { name: "Country", value: `${country}`, inline: true },
-        { name: "Latitude", value: `${lat}`, inline: true },
-        { name: "Longitude", value: `${long}`, inline: true },
-        { name: "\u200B", value: "\u200B" }
-      )
       .setTimestamp()
-      .setFooter("He do be getting yeeted doe");
+      .setFooter("I don't be getting yeeted doe");
 
     // General channel
-    logsChannel.send(messageEmbed);
+    logsChannel.send(messageEmbeded);
     res.send(ipInfo);
   }
 });

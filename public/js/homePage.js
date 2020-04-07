@@ -194,7 +194,7 @@ class Projects extends React.Component {
   }
 }
 
-class Project extends React.Component {
+class Project extends React.Component  {
   constructor(props) {
     super(props);
   }

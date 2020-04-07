@@ -1,3 +1,22 @@
+// Firebase
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCwI93qxmuAN3mQ3-3HWEKg_b4Oktm_a9c",
+  authDomain: "portfolio-da18d.firebaseapp.com",
+  databaseURL: "https://portfolio-da18d.firebaseio.com",
+  projectId: "portfolio-da18d",
+  storageBucket: "portfolio-da18d.appspot.com",
+  messagingSenderId: "143588271727",
+  appId: "1:143588271727:web:6e2cc12ec0e7f5a65acf9a",
+  measurementId: "G-92MJJL0XQM",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+var db = firebase.firestore();
+
 var introTypeWriter = document.getElementById("intro-text-typewriter");
 // Sections
 var header = document.querySelector("header");
@@ -21,7 +40,7 @@ for (let i = 0; i < introTexts.length; i++) {
     triggerElement: introText,
     triggerHook: 1,
     duration: 0,
-    offset: 250
+    offset: 250,
   })
     .setClassToggle(introText, "visible")
     .reverse(false)
@@ -35,7 +54,7 @@ for (let i = 0; i < introDividers.length; i++) {
     triggerElement: introDiv,
     triggerHook: 1,
     duration: 0,
-    offset: 185
+    offset: 185,
   })
     .setClassToggle(introDiv, "visible")
     .reverse(false)
@@ -50,7 +69,7 @@ for (let i = 0; i < qualityCards.length; i++) {
     triggerElement: "#qualities", // Element
     triggerHook: 0.85, // show when scrolled 10% into view
     duration: 0, // hide 10% before exiting view
-    offset: 180 // move trigger to center of element
+    offset: 180, // move trigger to center of element
   })
     .setClassToggle(card, "visible")
     .reverse(false)
@@ -64,7 +83,7 @@ for (let i = 0; i < qualityCardTexts.length; i++) {
     triggerElement: "#qualities", // Element
     triggerHook: 0.85, // show when scrolled 10% into view
     duration: 0, // hide 10% before exiting view
-    offset: 280 // move trigger to center of element
+    offset: 280, // move trigger to center of element
   })
     .setClassToggle(text, "visible")
     .reverse(false)
@@ -75,7 +94,7 @@ new ScrollMagic.Scene({
   triggerElement: "#who-am-i",
   triggerHook: 0.85,
   duration: 0,
-  offset: 170
+  offset: 170,
 })
   .setClassToggle("#who-am-i", "visible")
   .reverse(false)
@@ -88,7 +107,7 @@ new ScrollMagic.Scene({
   triggerElement: "#skills-container",
   triggerHook: 0.85,
   duration: 0,
-  offset: 170
+  offset: 170,
 })
   .setClassToggle("#skills-container", "visible")
   .reverse(false)
@@ -102,7 +121,7 @@ for (let i = 0; i < rowFilled.length; i++) {
     triggerElement: "#skills-container",
     triggerHook: 0.85,
     duration: 0,
-    offset: 170
+    offset: 170,
   })
     .setClassToggle(row, "visible")
     .reverse(false)
@@ -114,7 +133,7 @@ var typewriter = new Typewriter(introTypeWriter, {
   strings: ["Student", "Full-Stack Developer", "Mobile Developer"],
   loop: true,
   delay: 30,
-  autoStart: true
+  autoStart: true,
 });
 // Tab listeners
 homeTab.addEventListener("click", () => {
@@ -128,3 +147,87 @@ aboutTab.addEventListener("click", () => {
 portfolioTab.addEventListener("click", () => {
   portfolio.scrollIntoView({ behavior: "smooth" });
 });
+var projects = [];
+
+// React
+
+class Projects extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  state = {
+    projects: [
+      {
+        name: "App",
+        technologies: "React",
+        description: "It's just an app.",
+        url: "https://www.google.ca/",
+        picture: "https://www.google.ca/",
+      },
+    ],
+  };
+
+  componentDidMount() {
+    let tempProjects = [];
+    db.collection("Projects")
+      .orderBy("priority")
+      .get()
+      .then((snapShot) => {
+        snapShot.forEach((doc) => {
+          tempProjects.push(doc.data());
+        });
+        this.setState({ projects: tempProjects });
+      });
+  }
+
+  render() {
+    return this.state.projects.map((project, index) => (
+      <Project 
+        picture={this.state.projects[index].picture}
+        name={this.state.projects[index].name}
+        technologies={this.state.projects[index].technologies}
+        description={this.state.projects[index].description}
+        url={this.state.projects[index].url}
+      />
+    ));
+  }
+}
+
+class Project extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log(this.props.url);
+    return (
+      <a
+        target="_blank"
+        href={`${this.props.url}`}
+        className="project-image"
+        style={{ backgroundImage: `url(${this.props.picture})` }}>
+        <div className="project">
+          <div className="project-data">
+            <div className="project-title">
+              <div className="project-title-div">{this.props.name}</div>
+            </div>
+            <div className="project-technologies">
+              <div className="project-technologies-div">
+                {this.props.technologies}
+              </div>
+            </div>
+            <div className="project-center-divider"></div>
+            <div className="project-description">
+              <div className="project-description-div">
+                {this.props.description}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    );
+  }
+}
+
+ReactDOM.render(<Projects />, document.getElementById("projects"));

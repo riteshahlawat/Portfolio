@@ -5,6 +5,7 @@ const expressIp = require("express-ip");
 const path = require("path");
 const sslRedirect = require("heroku-ssl-redirect");
 
+
 // DISCORD
 const Discord = require("discord.js");
 
@@ -27,7 +28,9 @@ app.use(
     extensions: ["html"],
   })
 );
+// Get my repos
 
+// Store ip and upload to discord channel
 app.get("/storeIp", (req, res) => {
   const ipInfo = req.ipInfo;
   console.log(ipInfo.ip);

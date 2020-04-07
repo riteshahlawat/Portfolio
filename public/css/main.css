@@ -654,6 +654,7 @@ header {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+  user-select: none;
 }
 /* Technologies used */
 .project-technologies {
@@ -677,6 +678,7 @@ header {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+  user-select: none;
 }
 /* Divider */
 .project-center-divider {
@@ -704,6 +706,7 @@ header {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+  user-select: none;
 }
 
 /* Responsive */

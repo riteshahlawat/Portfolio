@@ -200,7 +200,6 @@ class Project extends React.Component {
   }
 
   render() {
-    console.log(this.props.url);
     return (
       <a
         target="_blank"

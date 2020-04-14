@@ -113,6 +113,16 @@ new ScrollMagic.Scene({
   .reverse(false)
   .addTo(smController);
 
+new ScrollMagic.Scene({
+  triggerElement: "#projects",
+  triggerHook: 0.7,
+  duration: 0,
+  offset: 170,
+})
+  .setClassToggle("#projects", "visible")
+  .reverse(false)
+  .addTo(smController);
+
 // Gets individual rows filled
 var rowFilled = document.querySelectorAll(".skill-row-filled");
 for (let i = 0; i < rowFilled.length; i++) {
@@ -183,7 +193,7 @@ class Projects extends React.Component {
 
   render() {
     return this.state.projects.map((project, index) => (
-      <Project 
+      <Project
         picture={this.state.projects[index].picture}
         name={this.state.projects[index].name}
         technologies={this.state.projects[index].technologies}
@@ -194,7 +204,7 @@ class Projects extends React.Component {
   }
 }
 
-class Project extends React.Component  {
+class Project extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -205,7 +215,8 @@ class Project extends React.Component  {
         target="_blank"
         href={`${this.props.url}`}
         className="project-image"
-        style={{ backgroundImage: `url(${this.props.picture})` }}>
+        style={{ backgroundImage: `url(${this.props.picture})` }}
+      >
         <div className="project">
           <div className="project-data">
             <div className="project-title">

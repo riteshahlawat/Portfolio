@@ -13,6 +13,7 @@
   --cDarkGray2: #242423;
   --cGrayText: #b2aca1;
   --cGrayDiv: #404140;
+  --anim-text-offset: 1em;
 }
 /* Scroll Bar */
 
@@ -465,7 +466,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  
 }
 
 #skills-container {
@@ -491,7 +491,6 @@ header {
   width: 600px;
 }
 .skill-title {
-
   text-align: center;
   width: 25%;
   height: 35px;
@@ -578,6 +577,8 @@ header {
 }
 /* Projects */
 #projects {
+  transform: translate(150px, 0px);
+  opacity: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -586,6 +587,16 @@ header {
   padding-top: 50px;
   flex-wrap: wrap;
   margin-bottom: 50px;
+  -webkit-transition: all 0.55s ease-in-out;
+  -moz-transition: all 0.55s ease-in-out;
+  -ms-transition: all 0.55s ease-in-out;
+  -o-transition: all 0.55s ease-in-out;
+  transition: all 0.55s ease-in-out;
+}
+
+#projects.visible {
+  transform: none;
+  opacity: 1;
 }
 /* Background image */
 .project-image {
@@ -611,7 +622,7 @@ header {
 }
 
 .project-image:hover .project-description-div {
-  transform: translateY(0);;
+  transform: translateY(0);
 }
 /* Inner */
 .project {
@@ -631,7 +642,6 @@ header {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  
 }
 /* Title */
 .project-title {
@@ -645,7 +655,6 @@ header {
   color: var(--cWhite);
   justify-content: center;
   text-align: center;
-  
 }
 .project-title-div {
   transform: translateY(-50px);
@@ -712,11 +721,12 @@ header {
 /* Responsive */
 @media (hover: none), (max-width: 835px) {
   .project {
-    opacity: 0.88;
+    opacity: 0.95;
   }
 
   .project-image {
     width: 100%;
+    margin-top: 50px;
   }
 
   .project-title-div {
@@ -728,6 +738,224 @@ header {
   }
 
   .project-description-div {
-    transform: translateY(0);;
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  min-height: 300px;
+  background-color: var(--cDarkGray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer-divs {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#footer-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+}
+
+.footer-div {
+  flex: 1;
+  height: 100%;
+  min-width: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.footer-div-title {
+  user-select: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 33px;
+  text-align: center;
+  letter-spacing: 0.0001em;
+  color: #d3cec3;
+  margin-top: 20px;
+  width: 45vw;
+}
+
+.footer-div-description {
+  user-select: none;
+  font-family: "Dosis", sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--cWhite);
+  text-align: center;
+  margin-top: 40px;
+}
+
+#footer-link-buttons {
+  margin-top: 15px;
+  height: fit-content;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.link-button {
+  text-decoration: none;
+}
+
+.link-icon {
+  user-select: none;
+  font-size: 45px;
+  color: #abb1b3;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.link-icon:hover {
+  color: var(--cWhite);
+}
+
+#footer-div-horizontal {
+  height: 1px;
+  width: 90%;
+  background-color: #4742428a;
+  margin-top: 10px;
+}
+
+#footer-note-text {
+  user-select: none;
+  margin-top: 5px;
+  color: #474242;
+  font-family: "Dosis", sans-serif;
+  font-weight: 300;
+  font-size: 21px;
+  text-align: center;
+}
+
+/* Responsive */
+
+@media (hover: none), (max-width: 835px) {
+  #footer-link-buttons {
+    width: 30%;
+  }
+  #footer-divs {
+    width: 100%;
+  }
+  .footer-div {
+    margin-top: 25px;
+  }
+  .footer-div-title {
+    width: 100vw;
+    font-size: 29px;
+  }
+  .link-icon {
+    font-size: 35px;
+  }
+  .link-icon:hover {
+    color: #abb1b3;
+  }
+  .footer-div-description {
+    font-size: 23px;
+  }
+}
+
+/* Custom Button */
+
+#resume-button {
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.btn {
+  position: relative;
+  width: 256px;
+  height: 64px;
+  line-height: 64px;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn span {
+  color: var(--cWhite);
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 18px;
+  transition: all 0.3s;
+  transform: scale(1, 1);
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.btn-two::before,
+.btn-two::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-two:hover::after {
+  animation-name: rotatecw;
+  animation-duration: 2s;
+}
+.btn-two:hover::before {
+  animation-name: rotateccw;
+  animation-duration: 3s;
+}
+.btn-two:hover::after,
+.btn-two:hover::before {
+  left: 96px;
+  width: 64px;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotatecw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }

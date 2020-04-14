@@ -577,7 +577,6 @@ header {
 }
 /* Projects */
 #projects {
-  transform: translate(150px, 0px);
   opacity: 0;
   width: 100%;
   height: 100%;

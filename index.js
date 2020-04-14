@@ -79,7 +79,7 @@ app.get("/storeIp", (req, res) => {
 
     // General channel
     logsChannel.send(messageEmbed);
-    res.send(ipInfo);
+    res.send("wonder what this does");
   } else {
     file = "https://i.ytimg.com/vi/AgmnUl31_ng/maxresdefault.jpg";
     // General channel
@@ -100,7 +100,7 @@ app.get("/storeIp", (req, res) => {
 
     // General channel
     logsChannel.send(messageEmbeded);
-    res.send(ipInfo);
+    res.send("wonder what this does");
   }
 });
 
